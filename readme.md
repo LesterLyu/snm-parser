@@ -36,4 +36,4 @@ $ pip install lark-parser
 - Field: 
   - e.g. `age`, `AGE`, `age_01`, `i_am_a_field`
   - Field name should contain only numbers, letters and underline _
-  - **No special characters** are allowed :)
+  - **No special characters** are allowed :point_left:
