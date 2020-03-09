@@ -1,5 +1,10 @@
 ## SNM Grammar Specification
 
+### Install [Lark](https://github.com/lark-parser/lark)
+```
+$ pip install lark-parser
+```
+
 ### Operator Precedence (High to Low)
 - `+`, `-` Unary plus and minus
   - `-1`
