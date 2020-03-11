@@ -1,8 +1,8 @@
 ## SNM Grammar Specification
 
 ### Install [Lark](https://github.com/lark-parser/lark)
-```
-$ pip install lark-parser
+```sh
+$ pip3 install lark-parser  # pip if in Windows environment
 ```
 
 ### Operator Precedence (High to Low)
