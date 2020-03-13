@@ -3,15 +3,13 @@
 // https://en.cppreference.com/w/c/language/operator_precedence
 
 
-start: expression
+?start: expression
 
 // low precedence first
 ?expression: or_exp
 
 ?or_exp: (or_exp OR_OP)? and_exp
-?and_exp: (and_exp AND_OP)? in_exp
-
-?in_exp: (in_exp IN_OP)? eq_neq_exp
+?and_exp: (and_exp AND_OP)? eq_neq_exp
 
 ?eq_neq_exp: (eq_neq_exp EQ_NEQ_OP)? compare_exp
 ?compare_exp: (compare_exp COMPARE_OP)? add_sub_exp
@@ -19,7 +17,9 @@ start: expression
 ?add_sub_exp: (add_sub_exp ADD_MINUS_OP)? mul_div_mod_exp
 ?mul_div_mod_exp: (mul_div_mod_exp MUL_DIV_MOD_OP)? not_exp
 
-?not_exp: NOT_OP* unary_exp
+?not_exp: NOT_OP* in_exp
+
+?in_exp: (in_exp IN_OP)? unary_exp
 
 ?unary_exp: ADD_MINUS_OP* parn
 
@@ -29,10 +29,10 @@ start: expression
 
 array: "[" [expression ("," expression)* ","?] "]"
 
-?terminal: NUMBER
+terminal: NUMBER
     | STRING
     | BOOLEAN
-    | FIELD 
+    | FIELD
 
 // keywords and operators
 IN_OP: "in"
@@ -46,7 +46,8 @@ COMPARE_OP: "<" | ">" | "<=" | ">="
 EQ_NEQ_OP: "==" | "!="
 
 // field should contain only numbers, letters and underline _
-FIELD: /[0-9a-zA-Z_]+/
+// ".-1" means low priority, default is 1
+FIELD.-1: /[0-9a-zA-Z_]+/
 
 %import common.ESCAPED_STRING -> STRING
 %import common.SIGNED_NUMBER  -> NUMBER

@@ -1,8 +1,8 @@
 ## SNM Grammar Specification
 
 ### Install [Lark](https://github.com/lark-parser/lark)
-```
-$ pip install lark-parser
+```sh
+$ pip3 install lark-parser  # pip if in Windows environment
 ```
 
 ### Operator Precedence (High to Low)
@@ -11,6 +11,13 @@ $ pip install lark-parser
   - `--+100` -> `100`
   - `++++100` -> `100`
   - `---100` -> `-100`
+- `in` -> list operation
+  - `"abc" in ["abc", "def"]` -> `true`
+  - `1 in [1, 2, 3,]` -> `true`
+  - `[1, 2] in [1, 2, 4, 6]` -> `true`
+  - `[0, 2] in [1, 2, 3]` -> `false`
+  - `!1 in [true, false]` -> `false`
+    - `1 in [true, false]` is evaluated first!
 - `!` Logical not
   - `!false` -> `true`
   - `!100` -> `false`
@@ -19,11 +26,6 @@ $ pip install lark-parser
 - `+`, `-` Addition and subtraction
 - `<`, `<=`, `>`, `>=`	Relational operators <, ≤, >, ≥
 - `==`, `!=` Relational = and ≠ respectively
-- `in` -> list operation
-  - `"abc" in ["abc", "def"]` -> `true`
-  - `1 in [1, 2, 3,]` -> `true`
-  - `[1, 2] in [1, 2, 4, 6]` -> `true`
-  - `[0, 2] in [1, 2, 3]` -> `false`
 - `&&` Logical AND
 - `||` Logical OR
 
@@ -36,4 +38,4 @@ $ pip install lark-parser
 - Field: 
   - e.g. `age`, `AGE`, `age_01`, `i_am_a_field`
   - Field name should contain only numbers, letters and underline _
-  - **No special characters** are allowed :)
+  - **No special characters** are allowed :point_left:
